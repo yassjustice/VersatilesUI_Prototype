@@ -1,0 +1,268 @@
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--color-surface, #FFFFFF);
+  border-right: 1px solid var(--color-border, #E1F1F3);
+  z-index: var(--z-docked, 10);
+  transition: var(--transition-normal, all 0.3s ease);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  /* Ensure no gap between header and sidebar */
+  padding-top: 70px;
+  box-sizing: border-box;
+  will-change: width;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* Dark mode styles for collapsed sidebar state */
+html[data-mode="dark"] .sidebar.collapsed {
+  border-right-color: rgba(33, 67, 72, 0.8);
+}
+
+/* RTL support */
+[dir="rtl"] .sidebar {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--color-sidebar-border);
+}
+
+/* Dark mode sidebar styles */
+html[data-mode="dark"] .sidebar {
+  background-color: rgba(19, 43, 46, 0.98);
+  border-right-color: #214348;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+html[data-mode="dark"] .sidebar-header {
+  background-color: rgba(19, 43, 46, 0.98); 
+  border-bottom-color: #214348;
+}
+
+html[data-mode="dark"] .sidebar-toggle.mobile {
+  background-color: rgba(31, 118, 130, 0.4);
+  border-color: var(--color-primary-700, #1F7682);
+  color: var(--color-primary-300, #7BDAE7);
+  box-shadow: 0 2px 8px rgba(52, 197, 218, 0.1);
+}
+
+html[data-mode="dark"] .sidebar-toggle.mobile:hover {
+  background-color: rgba(52, 197, 218, 0.25);
+  color: var(--color-primary-300, #7BDAE7);
+  border-color: var(--color-primary-500, #34C5DA);
+  box-shadow: 0 4px 12px rgba(52, 197, 218, 0.2);
+}
+
+.sidebar-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--color-border, #E1F1F3);
+  position: relative;
+  z-index: var(--z-base, 0);
+  background-color: var(--color-surface, #FFFFFF);
+  margin-top: -70px;
+  transition: all 0.3s ease;
+}
+
+/* Keep sidebar header height consistent with header */
+.header.scrolled ~ .sidebar .sidebar-header {
+  /* Keep the same height */
+  height: 70px;
+  margin-top: -70px;
+}
+
+.sidebar-logo {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-logo-text {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-primary-500, #34C5DA);
+  background: var(--gradient-primary, linear-gradient(135deg, #34C5DA 0%, #DA64F7 100%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.sidebar-toggle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.sidebar-toggle.mobile {
+  color: var(--color-text-primary, #0A2930);
+  background-color: var(--color-surface-alt, #F1F9FA);
+  border-color: var(--color-border, #E1F1F3);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  overflow-y: auto;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: var(--radii-md);
+  color: var(--color-sidebar-text);
+  transition: var(--transitions-fast);
+  font-family: var(--font-ui);
+  font-weight: var(--fontWeights-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav a:hover {
+  background-color: var(--color-sidebar-activeItem);
+  color: var(--color-primary-500);
+}
+
+.sidebar-nav a.active {
+  background-color: var(--color-sidebar-activeItem);
+  color: var(--color-sidebar-activeText);
+}
+
+.sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.sidebar-label {
+  margin-left: 0.75rem;
+  white-space: nowrap;
+}
+
+[dir="rtl"] .sidebar-label {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+/* Mobile sidebar */
+.sidebar.mobile {
+  width: 280px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  z-index: 1300; /* Higher than header */
+  padding-top: 0; /* We're using a custom header now */
+}
+
+.mobile-sidebar-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--color-border, #E1F1F3);
+  background-color: var(--color-surface, #FFFFFF);
+}
+
+.mobile-sidebar-close {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--color-surface-alt, #F1F9FA);
+  color: var(--color-text, #0A2930);
+  border: 1px solid var(--color-border, #E1F1F3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.mobile-sidebar-close:hover {
+  background-color: var(--color-primary-50, #E6F9FA);
+  color: var(--color-primary-600, #2A9EAF);
+}
+
+/* Dark mode mobile sidebar */
+html[data-mode="dark"] .sidebar.mobile {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+
+html[data-mode="dark"] .mobile-sidebar-header {
+  background-color: rgba(19, 43, 46, 0.98);
+  border-bottom-color: #214348;
+}
+
+html[data-mode="dark"] .mobile-sidebar-close {
+  background-color: rgba(26, 55, 59, 0.8);
+  border-color: #214348;
+  color: #E6F9FA;
+}
+
+html[data-mode="dark"] .mobile-sidebar-close:hover {
+  background-color: rgba(31, 118, 130, 0.4);
+  color: var(--color-primary-300, #7BDAE7);
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 1200; /* Just below the sidebar but above other content */
+  cursor: pointer;
+}
+
+/* Mobile menu button styles removed as we're using the header button instead */
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .sidebar:not(.mobile) {
+    width: 60px;
+  }
+  
+  .sidebar:not(.mobile) .sidebar-logo {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar:not(.mobile) {
+    display: none;
+  }
+  
+  .mobile-menu-button {
+    display: flex;
+  }
+}

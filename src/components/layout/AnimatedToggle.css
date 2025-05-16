@@ -1,0 +1,353 @@
+/* 
+ * AnimatedToggle.css
+ * Enhanced styling for toggle buttons with animations and fill effects
+ */
+
+/* Base styling for all animated toggle buttons */
+.animated-toggle {
+  --toggle-size: 40px;
+  --toggle-padding: 0;
+  --toggle-bg: var(--color-surface-alt, #F1F9FA);
+  --toggle-border: var(--color-border, #E1F1F3);
+  --toggle-color: var(--color-primary-500, #34C5DA);
+  --toggle-color-hover: var(--color-primary-600, #2BADC0);
+  --toggle-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --toggle-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --toggle-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  width: var(--toggle-size);
+  height: var(--toggle-size);
+  border-radius: 50%;  /* Perfect circle */
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  color: var(--toggle-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--toggle-transition);
+  box-shadow: var(--toggle-shadow);
+  overflow: hidden;
+  transform-origin: center;
+  padding: 0;
+}
+
+.animated-toggle:hover, 
+.animated-toggle:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--toggle-shadow-hover);
+  color: var(--toggle-color-hover);
+}
+
+.animated-toggle:active {
+  transform: translateY(1px);
+  box-shadow: var(--toggle-shadow);
+}
+
+/* Icon styling and animation */
+.animated-toggle svg {
+  width: 22px;
+  height: 22px;
+  transition: var(--toggle-transition);
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25)); /* Enhanced shadow for better visibility */
+  color: var(--toggle-color-hover); /* Use hover color by default for better visibility */
+}
+
+.animated-toggle:hover svg {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.35));
+}
+
+.animated-toggle:active svg {
+  transform: scale(0.95);
+}
+
+/* Icon wrapper for consistent positioning */
+.animated-toggle .icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* No toggle label styling - icons only */
+.animated-toggle .toggle-label,
+.animated-toggle span.label,
+.animated-toggle .text-label {
+  display: none !important;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* No label on hover either */
+.animated-toggle:hover .toggle-label,
+.animated-toggle:hover span.label,
+.animated-toggle:hover .text-label {
+  display: none !important;
+}
+
+/* Ripple effect */
+.animated-toggle::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(52, 197, 218, 0.2) 0%, rgba(52, 197, 218, 0) 70%);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+.animated-toggle:hover::before {
+  transform: scale(2);
+  opacity: 0.5;
+}
+
+/* Tooltip for better UX */
+.animated-toggle::after {
+  content: attr(aria-label);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.animated-toggle:hover::after, 
+.animated-toggle:focus::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1);
+  bottom: -40px;
+}
+
+/* Dark mode support */
+html[data-mode="dark"] .animated-toggle {
+  --toggle-bg: rgba(26, 55, 59, 0.8);
+  --toggle-border: var(--color-border, #214348);
+  --toggle-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --toggle-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: var(--color-text, #E6F9FA);
+}
+
+html[data-mode="dark"] .animated-toggle::before {
+  background: radial-gradient(circle, rgba(52, 197, 218, 0.3) 0%, rgba(52, 197, 218, 0) 70%);
+}
+
+/* Theme Toggle specific styles */
+.animated-toggle.theme-toggle {
+  overflow: visible;
+}
+
+.animated-toggle.theme-toggle .sun-rays {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.animated-toggle.theme-toggle.is-light .sun-rays {
+  opacity: 1;
+}
+
+.animated-toggle.theme-toggle .moon-mask {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--toggle-bg);
+  border-radius: 50%;
+  transform: translateX(5px);
+  transition: all 0.5s ease;
+  opacity: 0;
+  z-index: 0;
+}
+
+.animated-toggle.theme-toggle.is-dark .moon-mask {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animated-toggle.theme-toggle .icon-wrapper {
+  z-index: 3;
+  position: relative;
+}
+
+/* Sidebar Toggle specific styles */
+.animated-toggle.sidebar-toggle {
+  transition: all 0.2s ease;
+}
+
+.animated-toggle.sidebar-toggle svg {
+  transition: all 0.2s ease;
+}
+
+.animated-toggle.sidebar-toggle:hover svg {
+  transform: scale(1.15);
+}
+
+.animated-toggle.sidebar-toggle.collapsed:hover svg {
+  transform: scale(1.15);
+}
+
+/* Mobile menu toggle specific styles */
+.animated-toggle.menu-toggle .menu-icon,
+.animated-toggle.menu-toggle .close-icon {
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.animated-toggle.menu-toggle .menu-icon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+  z-index: 2;
+}
+
+.animated-toggle.menu-toggle .close-icon {
+  opacity: 0;
+  transform: scale(0.5);
+  z-index: 1;
+}
+
+.animated-toggle.menu-toggle.is-open .menu-icon {
+  opacity: 0;
+  transform: scale(0.5);
+  z-index: 1;
+}
+
+.animated-toggle.menu-toggle.is-open .close-icon {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+/* Language toggle with globe icon */
+.animated-toggle.lang-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  min-width: var(--toggle-size);
+  width: var(--toggle-size);
+  padding: 0;
+  overflow: hidden;
+}
+
+.animated-toggle.lang-toggle svg:first-child {
+  animation: gentle-bounce 3s ease-in-out infinite;
+  color: #2980b9; /* Bold blue globe for better visibility */
+  font-size: 20px; /* Reduced size for better fit */
+  filter: drop-shadow(0 0 2px rgba(41, 128, 185, 0.3));
+}
+
+.animated-toggle.lang-toggle .chevron-icon {
+  display: none; /* Hide chevron to keep button as clean circle */
+}
+
+.animated-toggle.lang-toggle.is-open .chevron-icon {
+  display: none;
+}
+
+/* Theme toggle with sun/moon icons */
+.animated-toggle.theme-toggle {
+  border-radius: 50%; /* Keep it round */
+  min-width: var(--toggle-size);
+  width: var(--toggle-size);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.animated-toggle.theme-toggle svg {
+  font-size: 22px;
+  z-index: 2;
+  position: relative;
+}
+
+.animated-toggle.theme-toggle.is-light svg {
+  color: #f39c12; /* Vibrant orange sun for better visibility */
+  filter: drop-shadow(0 0 3px rgba(243, 156, 18, 0.4));
+}
+
+.animated-toggle.theme-toggle.is-dark svg {
+  color: #9b59b6; /* Vibrant purple moon */
+  filter: drop-shadow(0 0 3px rgba(155, 89, 182, 0.4));
+}
+
+.animated-toggle.theme-toggle:hover {
+  width: var(--toggle-size);
+  border-radius: 50%;
+}
+
+/* Mobile menu toggle with hamburger icon */
+.animated-toggle.menu-toggle {
+  width: var(--toggle-size);
+  height: var(--toggle-size);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-toggle.menu-toggle .menu-icon,
+.animated-toggle.menu-toggle .close-icon {
+  font-size: 22px;
+  width: 100%;
+  height: 100%;
+}
+
+.animated-toggle.menu-toggle svg {
+  color: var(--color-primary-600, #2BADC0); /* Matching primary color for consistency */
+  font-size: 22px;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
+}
+
+.animated-toggle.menu-toggle:hover svg {
+  transform: scale(1.15);
+}
+
+/* Sidebar toggle with arrow icon */
+.animated-toggle.sidebar-toggle {
+  width: var(--toggle-size);
+  height: var(--toggle-size);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.animated-toggle.sidebar-toggle svg {
+  color: var(--color-primary-600, #2BADC0); /* Matching primary color */
+  font-size: 22px; /* Consistent size for better visibility */
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
+  font-weight: bold;
+}
+
+.animated-toggle.sidebar-toggle:hover svg {
+  transform: scale(1.15);
+}
+
+@keyframes gentle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}

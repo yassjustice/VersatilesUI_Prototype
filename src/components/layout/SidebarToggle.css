@@ -1,0 +1,136 @@
+/* 
+ * SidebarToggle.css
+ * This file controls the visibility of sidebar toggle buttons
+ * with the highest possible specificity and !important flags
+ * to ensure they always work correctly across screen sizes.
+ * It also handles RTL support for toggle button positioning.
+ * 
+ * IMPORTANT: This file ensures that EXACTLY ONE toggle button
+ * is visible at any given viewport width. The viewport is the
+ * sole source of truth for button visibility.
+ */
+
+/* Ensure the styles have maximum specificity and override everything else */
+html body .icon-button.sidebar-menu-toggle {
+  /* Default styles that apply to both states */
+  transition: all 0.3s ease;
+}
+
+html body .icon-button.sidebar-mobile-toggle {
+  /* Default styles that apply to both states */
+  transition: all 0.3s ease;
+}
+
+/* DESKTOP VIEW RULES (min-width: 769px) */
+@media screen and (min-width: 769px) {
+  /* Hide mobile toggle in desktop view */
+  html body .icon-button.sidebar-mobile-toggle {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+    z-index: -9999 !important;
+  }
+
+  /* Show desktop toggle in desktop view */
+  html body .icon-button.sidebar-menu-toggle {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: var(--z-sticky, 1200) !important;
+    pointer-events: all !important;
+    transform: none !important;
+  }
+}
+
+/* MOBILE VIEW RULES (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  /* COMPLETELY hide ALL sidebar toggle buttons in mobile view with maximum specificity */
+  html body .icon-button.sidebar-menu-toggle,
+  html body [class*="icon-button"][class*="sidebar-menu-toggle"],
+  html[data-mode="dark"] body .icon-button.sidebar-menu-toggle,
+  html[data-mode="light"] body .icon-button.sidebar-menu-toggle,
+  html body .icon-button.sidebar-mobile-toggle,
+  html body [class*="icon-button"][class*="sidebar-mobile-toggle"],
+  html[data-mode="dark"] body .icon-button.sidebar-mobile-toggle,
+  html[data-mode="light"] body .icon-button.sidebar-mobile-toggle {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+    z-index: -9999 !important;
+  }
+  
+  /* IMPORTANT: Do NOT show any sidebar toggle buttons in mobile view */
+}
+
+/* RTL SUPPORT */
+/* For RTL languages, flip the appropriate icons and positions */
+html[dir="rtl"] body .icon-button.sidebar-menu-toggle,
+html[dir="rtl"] body .icon-button.sidebar-mobile-toggle {
+  transform: scaleX(-1);
+}
+
+/* DEBUG SUPPORT */
+/* Apply colored borders in debug mode */
+html.debug-mode body .icon-button.sidebar-menu-toggle {
+  box-shadow: 0 0 0 2px #4caf50 !important; /* Green for desktop toggle */
+}
+
+html.debug-mode body .icon-button.sidebar-mobile-toggle {
+  box-shadow: 0 0 0 2px #2196f3 !important; /* Blue for mobile toggle */
+}
+
+/* Add debug indicators */
+html.debug-mode body .icon-button.sidebar-menu-toggle::after {
+  content: 'Desktop';
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4caf50;
+  color: white;
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 9999;
+}
+
+html.debug-mode body .icon-button.sidebar-mobile-toggle::after {
+  content: 'Mobile';
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2196f3;
+  color: white;
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 9999;
+}
+[dir="rtl"] html body .icon-button.sidebar-menu-toggle,
+[dir="rtl"] html body .icon-button.sidebar-mobile-toggle {
+  /* Flip horizontal margins for RTL */
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}

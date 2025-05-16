@@ -1,0 +1,143 @@
+.card {
+  background-color: var(--color-surface, #FFFFFF);
+  border-radius: var(--radius-lg, 0.5rem);
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition-normal, all 0.3s ease);
+  width: 100%;
+  padding: 1.5rem;
+}
+
+/* Card variants */
+.card.default {
+  background-color: var(--color-surface, #FFFFFF);
+}
+
+.card.raised {
+  background-color: var(--color-surface, #FFFFFF);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card.flat {
+  background-color: var(--color-surface-alt, #F1F9FA);
+}
+
+.card.floating {
+  background-color: var(--color-surface, #FFFFFF);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Bordered card */
+.card.bordered {
+  border: 1px solid var(--color-border, #E1F1F3);
+}
+
+/* Dark mode adjustments */
+html[data-mode="dark"] .card {
+  background-color: var(--color-surface, #132B2E);
+}
+
+html[data-mode="dark"] .card.flat {
+  background-color: var(--color-surface-alt, #1A373B);
+}
+
+html[data-mode="dark"] .card.bordered {
+  border-color: var(--color-border, #214348);
+}
+
+/* Card elevations */
+.card.elevation-none {
+  box-shadow: none;
+}
+
+.card.elevation-xs {
+  box-shadow: var(--shadows-sm);
+}
+
+.card.elevation-sm {
+  box-shadow: var(--shadows-md);
+}
+
+.card.elevation-md {
+  box-shadow: var(--shadows-lg);
+}
+
+.card.elevation-lg {
+  box-shadow: var(--shadows-xl);
+}
+
+.card.elevation-xl {
+  box-shadow: var(--shadows-2xl);
+}
+
+/* Interactive card */
+.card.interactive {
+  cursor: pointer;
+}
+
+/* Glass card */
+.card.glass {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-mode="dark"] .card.glass {
+  background-color: rgba(19, 43, 46, 0.7);
+  border: 1px solid rgba(33, 67, 72, 0.5);
+}
+
+/* Gradient card */
+.card.gradient {
+  background: var(--gradient-surfaceGradient);
+}
+
+[data-mode="dark"] .card.gradient {
+  background: var(--gradient-darkSurfaceGradient);
+}
+
+/* Card header */
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-card-border);
+}
+
+/* Card content */
+.card-content {
+  padding: 1.5rem;
+}
+
+/* Card footer */
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Card media */
+.card-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Focus styles for interactive cards */
+.card.interactive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-500-rgb), 0.4);
+}
+
+/* RTL support */
+[dir="rtl"] .card-footer {
+  justify-content: flex-start;
+}

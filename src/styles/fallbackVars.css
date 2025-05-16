@@ -1,0 +1,87 @@
+/* Default CSS Variables with Fallbacks */
+:root {
+  /* Core colors with fallback values */
+  --color-bg: #F8FDFD;
+  --color-text: #0A2930;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F1F9FA;
+  --color-border: #E1F1F3;
+  
+  /* Primary colors */
+  --color-primary-50: #E6F9FA;
+  --color-primary-100: #C3EFF4;
+  --color-primary-200: #9FE5EE;
+  --color-primary-300: #7BDAE7;
+  --color-primary-400: #58CFE1;
+  --color-primary-500: #34C5DA;
+  --color-primary-600: #2A9EAE;
+  --color-primary-700: #1F7682;
+  --color-primary-800: #154F57;
+  --color-primary-900: #0A272B;
+  
+  /* Secondary colors */
+  --color-secondary-500: #DA64F7;
+  
+  /* Accent colors */
+  --color-accent-500: #7BCB6B;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+  --font-ui: 'Montserrat', sans-serif;
+  
+  /* Spacing - using rem values directly as fallbacks */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Border radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+  
+  /* Text sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #34C5DA 0%, #DA64F7 100%);
+  
+  /* Z-indices - critical for proper layering */
+  --z-hide: -1;
+  --z-base: 0;
+  --z-docked: 10;
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-banner: 1200;
+  --z-overlay: 1300;
+  --z-modal: 1400;
+  --z-popover: 1500;
+  --z-toast: 1700;
+  --z-tooltip: 1800;
+}
+
+/* Dark mode overrides when data-mode="dark" is set */
+html[data-mode="dark"] {
+  --color-bg: #0E1E20;
+  --color-text: #E6F9FA;
+  --color-surface: #132B2E;
+  --color-surface-alt: #1A373B;
+  --color-border: #214348;
+}

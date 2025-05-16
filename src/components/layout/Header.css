@@ -1,0 +1,515 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky, 1100);
+  height: 70px;
+  background: var(--color-header-background, rgba(255, 255, 255, 0.9));
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border, #E1F1F3);
+  transition: var(--transition-normal, all 0.3s ease);
+  will-change: height;
+}
+
+/* Special header styling for homepage */
+.homepage-layout .header {
+  width: 100vw;
+  max-width: 100vw;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: none;
+  border-bottom: none;
+}
+
+html[data-mode="dark"] .homepage-layout .header {
+  background: rgba(19, 43, 46, 0.85);
+  box-shadow: none;
+  border-bottom: none;
+}
+
+/* Dark mode overrides */
+html[data-mode="dark"] .header {
+  background: rgba(19, 43, 46, 0.9);
+  border-bottom: 1px solid var(--color-border, #214348);
+}
+
+html[data-mode="dark"] .icon-button {
+  background: rgba(26, 55, 59, 0.8);
+  border-color: var(--color-border, #214348);
+  color: var(--color-text, #E6F9FA);
+  /* Enhance visibility in dark mode */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* Increase contrast for better visibility */
+  opacity: 0.95;
+  /* Add a subtle highlight */
+  text-shadow: 0 0 2px rgba(230, 249, 250, 0.3);
+}
+
+html[data-mode="dark"] .lang-toggle {
+  background: rgba(26, 55, 59, 0.8);
+  border-color: var(--color-border, #214348);
+  color: var(--color-text, #E6F9FA);
+}
+
+.header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  /* Ensure height stays constant at 70px to prevent gap with sidebar */
+  height: 70px !important;
+}
+
+.header-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Homepage header has full width container */
+.homepage-layout .header-container {
+  max-width: 100vw;
+  padding: 0 3rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: var(--z-docked, 1110);  /* Higher z-index to ensure visibility */
+}
+
+.header-left-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Base styles for sidebar toggles - detailed visibility is controlled by SidebarToggle.css */
+.icon-button.sidebar-mobile-toggle,
+.icon-button.sidebar-menu-toggle {
+  position: relative;
+  z-index: var(--z-sticky, 1200);
+}
+
+/* Show/hide appropriate toggle buttons based on screen size */
+@media (max-width: 768px) {
+  .sidebar-mobile-toggle {
+    display: flex; /* Show on mobile */
+  }
+  
+  .sidebar-menu-toggle {
+    display: none; /* Hide on mobile */
+  }
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  height: 100%; /* Full height of header */
+}
+
+.logo {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-500, #34C5DA);
+  background: var(--gradient-primary, linear-gradient(135deg, #34C5DA 0%, #DA64F7 100%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.025em;
+  display: inline-flex; /* Use inline-flex for better text alignment */
+  align-items: center;
+  position: relative;
+  z-index: var(--z-docked, 10);
+  padding: 4px 8px;
+  margin-left: -8px;
+  height: 100%;
+    /* Add a subtle glow effect to make the gradient text stand out more */
+  text-shadow: 0 0 8px rgba(52, 197, 218, 0.3);
+}
+
+/* Add special styling for the logo in dark mode for better visibility */
+html[data-mode="dark"] .logo {
+  text-shadow: 0 0 10px rgba(52, 197, 218, 0.5);
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+}
+
+.desktop-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.desktop-nav a {
+  font-family: var(--font-ui, 'Montserrat', sans-serif);
+  font-weight: 500;
+  color: var(--color-text, #0A2930);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.desktop-nav a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: var(--gradient-primary, linear-gradient(135deg, #34C5DA 0%, #DA64F7 100%));
+  transition: var(--transition-fast, all 0.2s ease);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.desktop-nav a:hover:after, 
+.desktop-nav a.active:after {
+  width: 100%;
+}
+
+/* Dark mode navigation links */
+html[data-mode="dark"] .desktop-nav a {
+  color: var(--color-text, #E6F9FA);
+}
+
+/* Controls */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-button {
+  background: var(--color-surface-alt, #F1F9FA);
+  border: 1px solid var(--color-border, #E1F1F3);
+  cursor: pointer;
+  color: var(--color-text, #0A2930);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full, 9999px);
+  transition: var(--transition-fast, all 0.2s ease);
+  position: relative;
+  z-index: var(--z-sticky, 1200); /* Ensure consistent z-index for all header elements */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.icon-button:hover {
+  background: var(--color-primary-50, #E6F9FA);
+  border-color: var(--color-primary-300, #7BDAE7);
+}
+
+/* Custom styling for the theme toggle button */
+.header-controls .icon-button:first-child {
+  background: linear-gradient(135deg, rgba(52, 197, 218, 0.2) 0%, rgba(218, 100, 247, 0.2) 100%);
+  border-color: var(--color-primary-200, #9FE5EE);
+}
+
+html[data-mode="dark"] .header-controls .icon-button:first-child {
+  background: linear-gradient(135deg, rgba(52, 197, 218, 0.3) 0%, rgba(218, 100, 247, 0.3) 100%);
+  border-color: var(--color-primary-700, #1F7682);
+}
+
+/* Special styling for mobile-menu-button */
+.icon-button.menu-toggle {
+  position: relative;
+  z-index: var(--z-sticky, 1200); /* Increased to ensure visibility */
+}
+
+/* Styling for the sidebar toggle button */
+.icon-button.sidebar-menu-toggle {
+  background: var(--color-primary-50, #E6F9FA);
+  border-color: var(--color-primary-200, #9FE5EE);
+  color: var(--color-primary-600, #2A9EAF);
+  position: relative;
+  z-index: var(--z-sticky, 1200);
+  margin-right: 0.5rem;
+  /* Removed display: none to let SidebarToggle.css control visibility */
+}
+
+.icon-button.sidebar-menu-toggle:hover {
+  background: var(--color-primary-100, #C9F2F6);
+  border-color: var(--color-primary-300, #7BDAE7);
+}
+
+/* Mobile sidebar toggle button styling */
+.icon-button.sidebar-mobile-toggle {
+  background: var(--color-primary-50, #E6F9FA);
+  border-color: var(--color-primary-200, #9FE5EE);
+  color: var(--color-primary-600, #2A9EAF);
+  position: relative;
+  z-index: var(--z-sticky, 1200);
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.icon-button.sidebar-mobile-toggle:hover {
+  background: var(--color-primary-100, #C9F2F6);
+  border-color: var(--color-primary-300, #7BDAE7);
+}
+
+html[data-mode="dark"] .icon-button.sidebar-menu-toggle,
+html[data-mode="dark"] .icon-button.sidebar-mobile-toggle {
+  background-color: rgba(52, 197, 218, 0.2);
+  color: var(--color-primary-400, #58CFE1);
+  border-color: var(--color-primary-600, #2A9EAF);
+  box-shadow: 0 2px 8px rgba(52, 197, 218, 0.15);
+}
+
+html[data-mode="dark"] .icon-button.sidebar-menu-toggle:hover,
+html[data-mode="dark"] .icon-button.sidebar-mobile-toggle:hover {
+  background-color: rgba(52, 197, 218, 0.3);
+  color: var(--color-primary-300, #7BDAE7);
+  border-color: var(--color-primary-500, #34C5DA);
+  box-shadow: 0 4px 12px rgba(52, 197, 218, 0.2);
+}
+
+/* Hide elements completely */
+.hidden {
+  display: none !important;
+}
+
+/* RTL support for sidebar toggle */
+[dir="rtl"] .icon-button.sidebar-menu-toggle,
+[dir="rtl"] .icon-button.sidebar-mobile-toggle {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  position: relative;
+  z-index: var(--z-docked, 10);
+  border: 1px solid var(--color-border, #E1F1F3);
+  background-color: var(--color-surface-alt, #F1F9FA);
+  padding: 0 8px;
+  border-radius: var(--radius-full, 9999px);
+  height: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.lang-toggle .rotated {
+  transform: rotate(180deg);
+  transition: var(--transition-fast, all 0.2s ease);
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: var(--color-surface, #FFFFFF);
+  border-radius: var(--radius-md, 0.25rem);
+  border: 1px solid var(--color-border, #E1F1F3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  width: 160px;
+  z-index: var(--z-dropdown, 1200);  /* Increased z-index to ensure visibility */
+}
+
+/* Dark mode dropdown menu */
+html[data-mode="dark"] .lang-dropdown {
+  background-color: rgba(19, 43, 46, 0.98);
+  border-color: var(--color-border, #214348);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  /* Add a subtle glow to make it more visible in dark mode */
+  box-shadow: 0 0 15px rgba(52, 197, 218, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+.lang-dropdown button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--color-text, #0A2930);
+  font-family: var(--font-ui, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--transition-fast, all 0.2s ease);
+}
+
+.lang-dropdown button:hover,
+.lang-dropdown button.active {
+  background-color: var(--color-surface-alt, #F1F9FA);
+}
+
+.lang-dropdown button.active {
+  font-weight: 700;
+  color: var(--color-primary-500, #34C5DA);
+}
+
+/* Dark mode dropdown buttons */
+html[data-mode="dark"] .lang-dropdown button {
+  color: var(--color-text, #E6F9FA);
+}
+
+html[data-mode="dark"] .lang-dropdown button:hover,
+html[data-mode="dark"] .lang-dropdown button.active {
+  background-color: rgba(26, 55, 59, 0.9);
+}
+
+html[data-mode="dark"] .lang-dropdown button.active {
+  color: var(--color-primary-400, #58CFE1);
+}
+
+/* Mobile Navigation */
+.menu-toggle {
+  display: none;
+  z-index: var(--z-sticky, 1100);
+  position: relative;
+}
+
+.mobile-nav {
+  display: none;
+  background-color: var(--color-surface);
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadows-lg);
+}
+
+.mobile-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-ui);
+  font-weight: var(--fontWeights-medium);
+  color: var(--color-text-primary);
+  border-radius: var(--radii-md);
+  transition: var(--transitions-fast);
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+  background-color: var(--color-surfaceAlt);
+  color: var(--color-primary-500);
+}
+
+.mobile-lang-options {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.lang-title {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-ui);
+  color: var(--color-text-secondary);
+  font-size: var(--fontSizes-sm);
+}
+
+.lang-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+}
+
+.lang-buttons button {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radii-md);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: var(--transitions-fast);
+  font-family: var(--font-ui);
+}
+
+.lang-buttons button:hover,
+.lang-buttons button.active {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+  color: white;
+}
+
+/* RTL language support */
+[dir="rtl"] .desktop-nav a:after {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .lang-dropdown button {
+  text-align: right;
+}
+
+/* Responsive adjustments */
+@media (min-width: 769px) {
+  /* Sidebar toggle visibility is now controlled by SidebarToggle.css */
+}
+
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 0 1.5rem;
+  }
+  
+  .desktop-nav ul {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+    /* Sidebar toggle visibility is now controlled by SidebarToggle.css */
+  /* Removing redundant CSS that's now managed by SidebarToggle.css */
+    /* Mobile toggle styles are now controlled by SidebarToggle.css */
+  /* Removed redundant CSS for .icon-button.sidebar-mobile-toggle */
+  
+  .menu-toggle {
+    display: flex !important;
+    position: relative;
+    z-index: var(--z-sticky, 1200); /* Increased for consistency */
+  }
+  
+  .mobile-nav {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: var(--z-dropdown, 1000);
+  }
+    .header.scrolled + .mobile-nav {
+    top: 70px;
+  }
+  
+  .header-container {
+    padding: 0 1rem;
+  }
+  
+  .icon-button.mobile-menu-button {
+    z-index: var(--z-sticky, 1100);
+  }
+}

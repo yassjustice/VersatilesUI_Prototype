@@ -1,0 +1,300 @@
+/* 
+ * DebugPanel.css
+ * Styles for the floating debug panel
+ */
+
+.debug-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: rgba(33, 150, 243, 0.8);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.debug-toggle-button:hover {
+  background: rgba(33, 150, 243, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.debug-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* Dark mode support */
+html[data-mode="dark"] .debug-panel {
+  background: rgba(18, 35, 38, 0.95);
+  color: #e0f7fa;
+  border: 1px solid #2c4850;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.debug-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #2196f3;
+  color: white;
+}
+
+.debug-panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.debug-panel-header button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.debug-panel-header button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.debug-panel-content {
+  padding: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.debug-section {
+  margin-bottom: 20px;
+}
+
+.debug-section h4 {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0d47a1;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+html[data-mode="dark"] .debug-section h4 {
+  color: #82b1ff;
+  border-bottom: 1px solid #2c4850;
+}
+
+.debug-info {
+  margin-left: 10px;
+}
+
+.debug-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.debug-label {
+  font-weight: 500;
+}
+
+.debug-value {
+  font-family: 'Courier New', monospace;
+}
+
+.debug-value.desktop,
+.debug-value.visible {
+  color: #388e3c;
+  font-weight: bold;
+}
+
+.debug-value.mobile {
+  color: #1976d2;
+  font-weight: bold;
+}
+
+.debug-value.hidden {
+  color: #d32f2f;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+html[data-mode="dark"] .debug-value.desktop,
+html[data-mode="dark"] .debug-value.visible {
+  color: #81c784;
+}
+
+html[data-mode="dark"] .debug-value.mobile {
+  color: #64b5f6;
+}
+
+html[data-mode="dark"] .debug-value.hidden {
+  color: #ef9a9a;
+}
+
+/* Button state badges and visibility indicators */
+.debug-value.visibility-visible {
+  color: #388e3c;
+  font-weight: bold;
+}
+
+.debug-value.visibility-hidden {
+  color: #d32f2f;
+  text-decoration: line-through;
+}
+
+/* Button state badges */
+.debug-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+/* Button states */
+.debug-badge.state-open {
+  background-color: #43a047;
+  color: white;
+}
+
+.debug-badge.state-closed {
+  background-color: #e53935;
+  color: white;
+}
+
+.debug-badge.state-collapsed {
+  background-color: #fb8c00;
+  color: white;
+}
+
+.debug-badge.state-expanded {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.debug-badge.state-light {
+  background-color: #ffb300;
+  color: #333;
+}
+
+.debug-badge.state-dark {
+  background-color: #5c6bc0;
+  color: white;
+}
+
+
+/* Button state badges */
+.debug-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+/* Button states */
+.debug-badge.state-open {
+  background-color: #43a047;
+  color: white;
+}
+
+.debug-badge.state-closed {
+  background-color: #e53935;
+  color: white;
+}
+
+.debug-badge.state-collapsed {
+  background-color: #fb8c00;
+  color: white;
+}
+
+.debug-badge.state-expanded {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.debug-badge.state-light {
+  background-color: #ffb300;
+  color: #333;
+}
+
+.debug-badge.state-dark {
+  background-color: #5c6bc0;
+  color: white;
+
+  opacity: 0.7;
+}
+
+html[data-mode="dark"] .debug-value.visibility-visible {
+  color: #81c784;
+}
+
+html[data-mode="dark"] .debug-value.visibility-hidden {
+  color: #ef9a9a;
+}
+
+.debug-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  margin-left: 6px;
+}
+
+.debug-badge.state-open,
+.debug-badge.state-expanded,
+.debug-badge.state-light {
+  background-color: #4caf50;
+}
+
+.debug-badge.state-closed,
+.debug-badge.state-collapsed,
+.debug-badge.state-dark {
+  background-color: #607d8b;
+}
+
+/* Animated button state row */
+.debug-row.button-state {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.debug-row.button-state:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+html[data-mode="dark"] .debug-row.button-state:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Debug mode visualization */
+html.debug-mode .animated-toggle {
+  outline: 2px dashed #ff9800;
+}

@@ -1,0 +1,223 @@
+.input-wrapper {
+  position: relative;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transitions-fast);
+  margin-bottom: 1rem;
+}
+
+/* Full width input */
+.input-wrapper.full-width {
+  width: 100%;
+}
+
+/* Input content container */
+.input-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input field */
+.input-field {
+  width: 100%;
+  font-family: var(--font-body);
+  background-color: var(--color-surface, #FFFFFF);
+  color: var(--color-text, #0A2930);
+  border: 1px solid var(--color-border, #E1F1F3);
+  transition: var(--transition-fast, all 0.2s ease);
+  outline: none;
+  padding: 0 0.75rem;
+}
+
+/* Placeholder styling */
+.input-field::placeholder {
+  color: var(--color-text-tertiary, #5D8B95);
+  opacity: 0.7;
+}
+
+/* Focus state */
+.input-field:focus {
+  border-color: var(--color-primary-500, #34C5DA);
+  box-shadow: 0 0 0 2px rgba(52, 197, 218, 0.2);
+}
+
+/* Size variants */
+.input-wrapper.sm .input-field {
+  height: 32px;
+  font-size: var(--fontSizes-sm);
+  border-radius: var(--radii-sm);
+}
+
+.input-wrapper.md .input-field {
+  height: 40px;
+  font-size: var(--fontSizes-md);
+  border-radius: var(--radii-md);
+}
+
+.input-wrapper.lg .input-field {
+  height: 48px;
+  font-size: var(--fontSizes-lg);
+  border-radius: var(--radii-md);
+  padding: 0 1rem;
+}
+
+/* Variant styles */
+.input-wrapper.default .input-field {
+  background-color: var(--color-input-background);
+  border: 1px solid var(--color-input-border);
+}
+
+.input-wrapper.filled .input-field {
+  background-color: var(--color-surfaceAlt);
+  border: 1px solid transparent;
+}
+
+.input-wrapper.borderless .input-field {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-input-border);
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Focus, hover, and state styling */
+.input-wrapper.focused .input-field {
+  border-color: var(--color-input-focusBorder);
+}
+
+.input-wrapper.hovered:not(.focused):not(.disabled) .input-field {
+  border-color: var(--color-borderHover);
+}
+
+.input-wrapper.error .input-field {
+  border-color: var(--color-error) !important;
+}
+
+.input-wrapper.success .input-field {
+  border-color: var(--color-success) !important;
+}
+
+.input-wrapper.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.input-wrapper.disabled .input-field {
+  cursor: not-allowed;
+  background-color: var(--color-surfaceAlt);
+  border-color: var(--color-input-border);
+}
+
+/* Input with icon */
+.input-wrapper.has-icon .input-icon {
+  position: absolute;
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input-wrapper.has-icon.icon-start .input-icon.start {
+  left: 0.75rem;
+}
+
+.input-wrapper.has-icon.icon-start .input-field {
+  padding-left: 2.25rem;
+}
+
+.input-wrapper.has-icon.icon-end .input-icon.end {
+  right: 0.75rem;
+}
+
+.input-wrapper.has-icon.icon-end .input-field {
+  padding-right: 2.25rem;
+}
+
+/* Label styling */
+.input-label {
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: var(--color-input-placeholder);
+  font-family: var(--font-ui);
+  font-size: var(--fontSizes-md);
+  transition: var(--transitions-fast);
+  transform-origin: left center;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* RTL support for label */
+[dir="rtl"] .input-label {
+  left: auto;
+  right: 0.75rem;
+  transform-origin: right center;
+}
+
+/* Required indicator */
+.required-indicator {
+  color: var(--color-error);
+  margin-left: 0.25rem;
+}
+
+[dir="rtl"] .required-indicator {
+  margin-left: 0;
+  margin-right: 0.25rem;
+}
+
+/* Border highlight animation */
+.input-border-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-primary-500);
+  border-radius: var(--radii-full);
+}
+
+/* Error and success messages */
+.input-message {
+  margin-top: 0.25rem;
+  font-size: var(--fontSizes-sm);
+  font-family: var(--font-ui);
+  line-height: 1.4;
+}
+
+.input-message.error {
+  color: var(--color-error);
+}
+
+.input-message.success {
+  color: var(--color-success);
+}
+
+/* Focus styling override for keyboard navigation */
+.input-field:focus {
+  border-color: var(--color-input-focusBorder);
+}
+
+/* Borderless variant focus style */
+.input-wrapper.borderless.focused .input-field {
+  border-bottom-color: var(--color-primary-500);
+}
+
+/* Adjustment for size variants */
+.input-wrapper.sm .input-label {
+  font-size: var(--fontSizes-sm);
+}
+
+.input-wrapper.lg .input-label {
+  font-size: var(--fontSizes-lg);
+}
+
+/* Borderless variants specific adjustments */
+.input-wrapper.borderless .input-border-highlight {
+  height: 1px;
+}
