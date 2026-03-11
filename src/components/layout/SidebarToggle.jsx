@@ -9,7 +9,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiMenu, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { FaBars, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';

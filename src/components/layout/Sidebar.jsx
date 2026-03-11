@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 import './Sidebar.css';
 
@@ -18,7 +18,7 @@ import {
 } from 'react-icons/fi';
 
 const Sidebar = ({ mobileOpen, setMobileOpen, isCollapsed, setIsCollapsed }) => {
-  const { isDark, language } = useTheme();
+  const { language } = useTheme();
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(isCollapsed || false);
   const isRtl = language === 'ar';
@@ -28,7 +28,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, isCollapsed, setIsCollapsed }) => 
     if (isCollapsed !== undefined && collapsed !== isCollapsed) {
       setCollapsed(isCollapsed);
     }
-  }, [isCollapsed]);
+  }, [isCollapsed]); // eslint-disable-line react-hooks/exhaustive-deps
   
   // Sync parent component state when internal state changes
   useEffect(() => {
@@ -212,9 +212,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, isCollapsed, setIsCollapsed }) => 
         console.log('Desktop Sidebar Collapsed:', collapsed);
         console.groupEnd();
       }
-    } catch (e) {
-      // Ignore errors in localStorage access
-    }
+    } catch { /* ignore */ }
   }, [mobileOpen, collapsed]);
 
   return (

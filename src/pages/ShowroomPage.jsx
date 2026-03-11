@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 import { Button, Card, Input, CodeBlock } from '../components/ui';
 import './ShowroomPage.css';
 
@@ -11,7 +9,6 @@ import { FiInfo, FiCode, FiEye } from 'react-icons/fi';
 
 const ShowroomPage = () => {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
   
   const [activeTab, setActiveTab] = useState('overview');
   

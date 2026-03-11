@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { Button, Card } from '../components/ui';
 import './ControlCenterPage.css';
@@ -17,7 +15,7 @@ import {
 
 const ControlCenterPage = () => {
   const { t, i18n } = useTranslation();
-  const { isDark, toggleTheme, language, changeLanguage, currentTheme, changeTheme } = useTheme();
+  const { isDark, toggleTheme, language, changeLanguage } = useTheme();
   
   // Animation variants
   const containerVariants = {

@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
 import './Input.css';
 
 export const Input = ({

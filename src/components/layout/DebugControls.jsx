@@ -10,13 +10,6 @@ import './DebugControls.css';
 function DebugControls() {
   const [showControls, setShowControls] = useState(false);
   const [isDebugEnabled, setIsDebugEnabled] = useState(DEBUG_CONFIG.ENABLED);
-  const [config, setConfig] = useState({
-    showPanel: DEBUG_CONFIG.SHOW_DEBUG_PANEL,
-    logViewport: DEBUG_CONFIG.LOG_VIEWPORT_CHANGES,
-    logButtons: DEBUG_CONFIG.LOG_BUTTON_STATES,
-    highlight: DEBUG_CONFIG.HIGHLIGHT_COMPONENTS,
-    logLevel: DEBUG_CONFIG.LOG_LEVEL
-  });
   
   // Update local storage when debug settings change
   useEffect(() => {

@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 // Import different icon sets to support both outline and fill icons
@@ -32,7 +31,6 @@ const AnimatedToggle = ({
   className = '',
   animationProps = {},
   testId,
-  labelText,
 }) => {
   // Select icon components based on the provided icon names
   const getIconComponent = (iconName) => {

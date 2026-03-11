@@ -20,7 +20,7 @@ const isDebugMode = () => {
     // Then check localStorage for any override (useful for temporary debugging)
     const localStorageDebug = localStorage.getItem('versatiles_debug');
     return localStorageDebug === null ? true : localStorageDebug === 'true';
-  } catch (e) {
+  } catch {
     return false;
   }
 };
@@ -40,7 +40,7 @@ export const getViewportType = () => {
  * @param {string} [type='info'] - Log type (info, warning, error)
  * @param {number} [level=2] - Log level: 1=critical, 2=important, 3=verbose
  */
-export const debugLog = function(component, data = {}, type = 'info', level = 2) {
+export const debugLog = function(component, data = {}, _type, level = 2) {
   // Early return if debugging is disabled or if log level is higher than configured
   if (!isDebugMode() || level > DEBUG_CONFIG.LOG_LEVEL) return;
   
@@ -127,7 +127,7 @@ export const toggleDebugMode = (enable) => {
       `background: ${newState ? '#4caf50' : '#f44336'}; color: white; padding: 4px 8px; border-radius: 4px;`
     );
     return newState;
-  } catch (e) {
+  } catch {
     return false;
   }
 };

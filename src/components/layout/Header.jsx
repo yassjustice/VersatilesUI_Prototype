@@ -15,9 +15,6 @@ import './SidebarToggle.css';
 import './AnimatedToggle.css';
 import './Header.css';
 
-// Additional utility for consistent viewport checks
-const isMobileViewport = () => window.innerWidth <= 768;
-
 // Icons
 import { 
   FiSun, 
@@ -45,8 +42,6 @@ import {
 const Header = ({ 
   sidebarCollapsed, 
   setSidebarCollapsed, 
-  mobileSidebarOpen, 
-  setMobileSidebarOpen,
   mobileMenuOpen,
   setMobileMenuOpen,
   languageMenuOpen,
@@ -58,7 +53,7 @@ const Header = ({
   const [scrolled, setScrolled] = useState(false);
   const isRtl = language === 'ar';
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);  
-  const [viewportType, setViewportType] = useState(getViewportType());
+  const [, setViewportType] = useState(getViewportType());
   const isHomePage = location.pathname === '/' || location.pathname === '';
     // Track window size for responsive behavior
   useEffect(() => {
@@ -111,7 +106,7 @@ const Header = ({
   useEffect(() => {
     setMobileMenuOpen(false);
     setLanguageMenuOpen(false);
-  }, [location]);
+  }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Navigation links
   const navLinks = [

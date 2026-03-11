@@ -16,9 +16,6 @@ const DebugPanel = ({
   languageMenuOpen,
   mobileMenuOpen
 }) => {
-  // If debugging is disabled in the config, don't render anything
-  if (!DEBUG_CONFIG.ENABLED) return null;
-  
   const [viewportType, setViewportType] = useState(getViewportType());
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [debugEnabled, setDebugEnabled] = useState(DEBUG_CONFIG.ENABLED);
@@ -28,7 +25,7 @@ const DebugPanel = ({
     mobileMenu: {visible: windowWidth <= 768, state: mobileMenuOpen ? 'open' : 'closed'},
     language: {visible: true, state: languageMenuOpen ? 'open' : 'closed'}
   });
-  
+
   // Check if debug mode is enabled from config and localStorage
   useEffect(() => {
     try {
@@ -41,9 +38,7 @@ const DebugPanel = ({
       } else {
         document.documentElement.classList.remove('debug-mode');
       }
-    } catch (e) {
-      setDebugEnabled(false);
-    }
+    } catch { /* ignore */ }
   }, []);
   // Monitor viewport size and update button states
   useEffect(() => {

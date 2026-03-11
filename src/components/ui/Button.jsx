@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
 import './Button.css';
 
 export const Button = ({
