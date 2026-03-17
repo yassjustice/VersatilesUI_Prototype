@@ -26,6 +26,8 @@ export const Input = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const inputRef = useRef(null);
+  const generatedIdRef = useRef(`input-${Math.random().toString(36).slice(2,9)}`);
+  const inputId = props.id || generatedIdRef.current;
   
   // Determine if the input has a value
   const hasValue = value !== undefined && value !== '';
@@ -108,7 +110,7 @@ export const Input = ({
       {label && (
         <motion.label
           className="input-label"
-          htmlFor={props.id}
+          htmlFor={inputId}
           initial={hasValue || isFocused ? 'focused' : 'blurred'}
           animate={hasValue || isFocused ? 'focused' : 'blurred'}
           variants={labelVariants}
@@ -125,6 +127,7 @@ export const Input = ({
         )}
         
         <input
+          id={inputId}
           ref={inputRef}
           type={type}
           className="input-field"
@@ -136,7 +139,7 @@ export const Input = ({
           disabled={disabled}
           required={required}
           aria-invalid={!!error}
-          aria-describedby={error ? `${props.id}-error` : undefined}
+          aria-describedby={error ? `${inputId}-error` : undefined}
           {...props}
         />
         
@@ -154,7 +157,7 @@ export const Input = ({
       </div>
       
       {error && (
-        <div className="input-message error" id={`${props.id}-error`}>
+        <div className="input-message error" id={`${inputId}-error`}>
           {error}
         </div>
       )}

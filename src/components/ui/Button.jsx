@@ -14,6 +14,7 @@ export const Button = ({
   iconPosition = 'start',
   gradient = false,
   glass = false,
+  type = 'button',
   onClick,
   className = '',
   ...props
@@ -56,6 +57,7 @@ export const Button = ({
 
   return (
     <motion.button
+      type={type}
       className={buttonClasses}
       onClick={disabled ? undefined : onClick}
       initial="initial"
@@ -98,5 +100,7 @@ Button.propTypes = {
   iconPosition: PropTypes.oneOf(['start', 'end']),
   gradient: PropTypes.bool,
   glass: PropTypes.bool,
-  onClick: PropTypes.func,  className: PropTypes.string
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  onClick: PropTypes.func,
+  className: PropTypes.string
 };
