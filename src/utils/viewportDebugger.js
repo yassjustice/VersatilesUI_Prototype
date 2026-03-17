@@ -13,13 +13,12 @@ const BREAKPOINTS = {
 // Check if debug mode is enabled from config
 const isDebugMode = () => {
   try {
-    // First check the main configuration file setting
     if (!DEBUG_CONFIG.ENABLED) {
       return false;
     }
-    // Then check localStorage for any override (useful for temporary debugging)
     const localStorageDebug = localStorage.getItem('versatiles_debug');
-    return localStorageDebug === null ? true : localStorageDebug === 'true';
+    // Require an explicit user opt-in ("true") to enable debug behavior
+    return localStorageDebug === 'true';
   } catch {
     return false;
   }
@@ -120,9 +119,18 @@ export const debugLog = function(component, data = {}, _type, level = 2) {
  * @returns {boolean} New debug mode state
  */
 export const toggleDebugMode = (enable) => {
+  if (!DEBUG_CONFIG.ENABLED) {
+    console.warn('Debugging disabled by configuration');
+    return false;
+  }
   const newState = enable !== undefined ? enable : !isDebugMode();
   try {
     localStorage.setItem('versatiles_debug', String(newState));
+    if (newState) {
+      document.documentElement.classList.add('debug-mode');
+    } else {
+      document.documentElement.classList.remove('debug-mode');
+    }
     console.log(`%cVersatilesUI Debug Mode: ${newState ? 'ENABLED' : 'DISABLED'}`, 
       `background: ${newState ? '#4caf50' : '#f44336'}; color: white; padding: 4px 8px; border-radius: 4px;`
     );

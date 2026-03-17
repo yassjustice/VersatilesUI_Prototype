@@ -18,7 +18,9 @@ const DebugPanel = ({
 }) => {
   const [viewportType, setViewportType] = useState(getViewportType());
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [debugEnabled, setDebugEnabled] = useState(DEBUG_CONFIG.ENABLED);
+  const [debugEnabled, setDebugEnabled] = useState(() => {
+    try { return DEBUG_CONFIG.ENABLED && localStorage.getItem('versatiles_debug') === 'true'; } catch { return false; }
+  });
   const [buttonStates, setButtonStates] = useState({
     theme: {visible: true, state: themeState || 'light'},
     sidebar: {visible: windowWidth > 768, state: sidebarCollapsed ? 'collapsed' : 'expanded'},
@@ -29,9 +31,9 @@ const DebugPanel = ({
   // Check if debug mode is enabled from config and localStorage
   useEffect(() => {
     try {
-      const isDebug = DEBUG_CONFIG.ENABLED && localStorage.getItem('versatiles_debug') !== 'false';
+      const isDebug = DEBUG_CONFIG.ENABLED && localStorage.getItem('versatiles_debug') === 'true';
       setDebugEnabled(isDebug);
-      
+
       // Add debug mode class to html element for CSS targeting
       if (isDebug) {
         document.documentElement.classList.add('debug-mode');

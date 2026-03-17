@@ -118,8 +118,8 @@ const MainLayout = () => {
         </motion.div>
       </main>
       
-      {/* Debug controls for developers - always rendered but only shows toggle button by default */}
-      <DebugControls />
+      {/* Debug controls for developers - only rendered when debug enabled via Vite env */}
+      {DEBUG_CONFIG.ENABLED && <DebugControls />}
     </div>
   );
 };

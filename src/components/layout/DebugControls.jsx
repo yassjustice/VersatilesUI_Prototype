@@ -9,24 +9,24 @@ import './DebugControls.css';
 
 function DebugControls() {
   const [showControls, setShowControls] = useState(false);
-  const [isDebugEnabled, setIsDebugEnabled] = useState(DEBUG_CONFIG.ENABLED);
+  const [isDebugEnabled, setIsDebugEnabled] = useState(() => {
+    try {
+      return DEBUG_CONFIG.ENABLED && localStorage.getItem('versatiles_debug') === 'true';
+    } catch { return false; }
+  });
   
   // Update local storage when debug settings change
   useEffect(() => {
     try {
+      if (!DEBUG_CONFIG.ENABLED) return;
+
       localStorage.setItem('versatiles_debug', isDebugEnabled.toString());
-      
+
       // Apply debug class to html element if debug is enabled
       if (isDebugEnabled) {
         document.documentElement.classList.add('debug-mode');
       } else {
         document.documentElement.classList.remove('debug-mode');
-      }
-      
-      // Force reload to apply changes
-      if (isDebugEnabled !== DEBUG_CONFIG.ENABLED) {
-        alert('Debug settings changed. Page will reload to apply changes.');
-        window.location.reload();
       }
     } catch (e) {
       console.error('Error updating debug settings:', e);
