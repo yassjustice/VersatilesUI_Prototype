@@ -8,6 +8,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { applyThemeToDocument, getCurrentTheme } from '../../utils/themeUtils';
 import { DEBUG_CONFIG } from '../../config';
 import './MainLayout.css';
+import { motion } from 'framer-motion';
 
 const MainLayout = () => {
   const { isDark, language, currentTheme } = useTheme();

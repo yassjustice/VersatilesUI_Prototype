@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './Input.css';
+import { motion } from 'framer-motion';
 
 export const Input = ({
   type = 'text',

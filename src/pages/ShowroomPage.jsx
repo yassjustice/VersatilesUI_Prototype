@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Card, Input, CodeBlock } from '../components/ui';
 import './ShowroomPage.css';
+import { motion } from 'framer-motion';
 
 // Icons
 import { FiInfo, FiCode, FiEye } from 'react-icons/fi';

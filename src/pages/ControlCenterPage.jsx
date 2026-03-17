@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { Button, Card } from '../components/ui';
 import './ControlCenterPage.css';
+import { motion } from 'framer-motion';
 
 // Icons
 import { 

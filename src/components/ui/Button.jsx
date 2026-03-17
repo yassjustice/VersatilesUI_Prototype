@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
+import { motion } from 'framer-motion';
 
 export const Button = ({
   children,

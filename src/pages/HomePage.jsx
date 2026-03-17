@@ -4,6 +4,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui';
 import './HomePage.css';
+import { motion } from 'framer-motion';
 
 const HomePage = () => {
   const { t } = useTranslation();

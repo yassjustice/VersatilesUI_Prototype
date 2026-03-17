@@ -18,6 +18,7 @@ import * as Io from 'react-icons/io5'; // Ionicons
 import { FaSun, FaMoon, FaBars, FaTimes, FaGlobe, FaChevronDown, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 import './AnimatedToggle.css';
+import { motion } from 'framer-motion';
 
 const iconSets = { Fi, Fa, Hi, Bs, Io };
 
